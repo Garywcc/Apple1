@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>apple</title>
+</head>
+<style>
+	.main{
+		position:absolute;
+		bottom:0;
+		width:100%;
+		text-align:center;
+	}
+	.main img{
+		width:64px;
+	}
+</style>
+<script src="jquery-3.1.0.js"></script>
+<script>
+	$(function(){
+		var iDiv=$('.main');
+		var imgs=$('.main img');
+
+		var imgs=$('img');
+
+		iDiv.on('mousemove',function(e){
+
+			var e=e || event;
+			
+			var imgs=$('img');
+
+			var len=$('img').length;
+			
+			for(var i=0;i<len;i++){
+				//图片中心
+				var y1=parseInt(imgs.eq(i).offset().top)+parseInt(imgs.eq(i).outerHeight())/2;
+				var x1=parseInt(imgs.eq(i).offset().left)+parseInt(imgs.eq(i).outerWidth())/2;
+				/*var x1=imgs[i].offsetLeft+imgs[i].offsetWidth/2;
+		var y1=imgs[i].offsetTop+iDiv.offsetTop+imgs[i].offsetHeight/2;*/
+				var x=e.clientX;
+				var y=e.clientY;
+				var a=x-x1;
+				var b=y-y1;
+				var dis=Math.sqrt(a*a+b*b);
+				
+				var scale=1-dis/300;
+				if(scale<0.5){
+					scale=0.5;
+				}
+				
+				imgs[i].style.width=128*scale+"px";
+			}
+		})
+
+
+	})
+</script>
+<body>
+	<div class="main">
+		<img src="images/1.png" alt="">
+		<img src="images/2.png" alt="">
+		<img src="images/3.png" alt="">
+		<img src="images/4.png" alt="">
+		<img src="images/5.png" alt="">
+	</div>
+</body>
+</html>
